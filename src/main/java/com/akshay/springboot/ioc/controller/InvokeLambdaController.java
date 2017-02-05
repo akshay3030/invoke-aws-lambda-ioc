@@ -37,8 +37,6 @@ public class InvokeLambdaController {
 	@RequestMapping("/lambda/{lname}")
 	public String executeLambda(@PathVariable("lname") String lambda_name,@RequestParam String x, @RequestParam String y){
 		return lambdaService.processLambdaRequest(lambda_name,x, y);
-
-
 	}
 
 	//default method is GET
@@ -46,22 +44,6 @@ public class InvokeLambdaController {
 	public String executeLambda(@RequestBody LambdaInput lambdaInput,@RequestParam("name") String lambda_name){
 		
 		return lambdaService.processLambdaRequest(lambda_name,lambdaInput);
-
-		
-	}
-
-	public static String byteBufferToString(ByteBuffer buffer, Charset charset){
-
-		byte[] bytes;
-		if(buffer.hasArray()){
-			bytes = buffer.array();
-		}else{
-			bytes = new byte[buffer.remaining()];
-			buffer.get(bytes);
-		}
-		return new String(bytes, charset);
-
-
 	}
 
 }
